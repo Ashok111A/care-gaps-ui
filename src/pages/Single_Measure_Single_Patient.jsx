@@ -9,19 +9,15 @@ const SingleMeasureSinglePatient = () => {
         {/* Patient Card */}
         <div className="d-flex flex-col">
 
-
-
-          {/* Header with title and arrow icon */}
           <div >
             <div className="bg-white text-gray-900 p-6 rounded-lg shadow-md border border-gray-300 flex items-center gap-4">
-              {/* Left Side - Patient Image */}
+
               <img
                 src="https://images.unsplash.com/photo-1682407186023-12c70a4a35e0?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=2832&amp;q=80"
                 alt="Patient"
                 className="w-20 h-20 rounded-full object-cover border border-gray-300"
               />
 
-              {/* Right Side - Patient Information */}
               <div>
                 <h2 className="text-lg font-semibold">Patient Information</h2>
                 <p className="text-sm mt-2"><strong>Name:</strong> Jhon</p>
