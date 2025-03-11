@@ -1,19 +1,28 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Single_Measure_Single_Patient from "./pages/Single_Measure_Single_Patient";
 import PageLayOut from "./components/PageLayOut";
-import Home from "./pages/Home";
+import WelcomePage from "./pages/WelcomePage";
+import IndividualMeasureResult from "./components/IndividualMeasureResult";
+import IndividualResults from "./pages/IndividualResults";
 
 
 function App() {
   return (
-    <Router>
-    <PageLayOut>
-      <Routes>
-        <Route path="/" element={<Single_Measure_Single_Patient  />} />
-        <Route path="/home" element={<Home />} />
-      </Routes>
-    </PageLayOut>
-  </Router>
+<Router>
+  <Routes>
+    <Route path="/" element={<WelcomePage />} />
+    <Route path="/singlemeasure" element={<Single_Measure_Single_Patient />} />
+    <Route
+      path="/singlemeasure1"
+      element={
+        <PageLayOut>
+          <IndividualResults />
+        </PageLayOut>
+      }
+    />
+  </Routes>
+</Router>
+
   );
 }
 
