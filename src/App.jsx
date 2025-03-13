@@ -2,7 +2,6 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Single_Measure_Single_Patient from "./pages/Single_Measure_Single_Patient";
 import PageLayOut from "./components/PageLayOut";
 import WelcomePage from "./pages/WelcomePage";
-import IndividualMeasureResult from "./components/IndividualMeasureResult";
 import IndividualResults from "./pages/IndividualResults";
 
 
@@ -13,7 +12,7 @@ function App() {
     <Route path="/" element={<WelcomePage />} />
     <Route path="/singlemeasure" element={<Single_Measure_Single_Patient />} />
     <Route
-      path="/singlemeasure1"
+      path="/singlemeasureResult"
       element={
         <PageLayOut>
           <IndividualResults />

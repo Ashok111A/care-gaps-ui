@@ -8,7 +8,6 @@ function WelcomePage() {
   }
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50">
-      {/* Header */}
       <header className="bg-white shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex items-center">
@@ -19,8 +18,6 @@ function WelcomePage() {
           </div>
         </div>
       </header>
-
-      {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">
@@ -32,7 +29,6 @@ function WelcomePage() {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {/* Single Measure Single Patient Card */}
           <div className="group bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden">
             <div className="p-8 flex flex-col h-full">
               <div className="flex items-center justify-center w-12 h-12 bg-blue-100 rounded-xl mb-6">
@@ -55,8 +51,6 @@ function WelcomePage() {
             </div>
             <div className="h-1.5 w-full bg-gradient-to-r from-blue-600 to-blue-400" />
           </div>
-
-          {/* Multi Measure Single Patient Card */}
           <div className="group bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden">
             <div className="p-8 flex flex-col h-full">
               <div className="flex items-center justify-center w-12 h-12 bg-indigo-100 rounded-xl mb-6">
@@ -79,8 +73,6 @@ function WelcomePage() {
             </div>
             <div className="h-1.5 w-full bg-gradient-to-r from-indigo-600 to-indigo-400" />
           </div>
-
-          {/* Clinical Documentation Card */}
           <div className="group bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden">
             <div className="p-8 flex flex-col h-full">
               <div className="flex items-center justify-center w-12 h-12 bg-purple-100 rounded-xl mb-6">
@@ -104,8 +96,6 @@ function WelcomePage() {
             <div className="h-1.5 w-full bg-gradient-to-r from-purple-600 to-purple-400" />
           </div>
         </div>
-
-        {/* Stats Section */}
         <div className="mt-16 bg-white rounded-2xl shadow-md p-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">
