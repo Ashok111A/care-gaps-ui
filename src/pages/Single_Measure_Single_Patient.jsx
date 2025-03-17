@@ -128,13 +128,14 @@ function SingleMeasureSinglePatient() {
                 ? (individualCalculationResult.results[0]?.detailedResults[0] || { populationResults: [], statementResults: [] }).populationResults
                 : individualCalculationResult.populationResults;
 
-            const relevantStatements = processData
+                const relevantStatements = processData
                 ? (individualCalculationResult.results[0]?.detailedResults[0] || { statementResults: [] }).statementResults.filter(
-                    (stmt) => stmt.relevance === "TRUE" && !stmt.isFunction
-                )
+                    (stmt) => stmt.relevance.trim().toUpperCase() === "TRUE" && !stmt.isFunction
+                  )
                 : individualCalculationResult.statementResults.filter(
-                    (stmt) => stmt.relevance === "TRUE" && !stmt.isFunction
-                );
+                    (stmt) => stmt.relevance.trim().toUpperCase() === "TRUE" && !stmt.isFunction
+                  );
+              console.log(relevantStatements);
 
             let relevantStatementsValue = relevantStatements.map((stmt) => ({
                 [`${stmt.libraryName}.${stmt.statementName}`]: stmt.pretty,
@@ -144,8 +145,7 @@ function SingleMeasureSinglePatient() {
                 populationResults: populationResults,
                 relevantStatements: relevantStatementsValue,
             });
-
-
+            const SummaryInsights=JSON.parse(summary).insights;
             const transformData = (data) => {
 
                 return {
@@ -164,7 +164,7 @@ function SingleMeasureSinglePatient() {
             const combinedResults = {
                 individualCalculationResult,
                 gapsResult,
-                summary
+                SummaryInsights
             };
 
             setCompute(false)

@@ -18,18 +18,36 @@ export async function generateSummary(measureData: any): Promise<string> {
 	});
 
 	// Create a prompt template for summarization
-	const systemTemplate = `You are a clinical quality analyst. You will analyse the data provided by User and provide insights.
-Only provide in markdown format. No explanations.
+	const systemTemplate = `You are a Clinical Quality Analyst. Analyze the provided data and generate insights in JSON format. Do not include explanations.
 
-Provide key insights, including:
-- Overall measure performance,
-- Care gaps observed,
-- Potential areas for improvement.`;
-
+	Return the response in the following JSON structure:
+	
+	\`\`\`
+	{{
+	  "role": "Clinical Quality Analyst",
+	  "instruction": "Analyze the provided data and generate insights in **markdown format only**. Do not include explanations.",
+	  "output_format": "markdown",
+	  "insights": {{
+		"DetectedIssue": "Summarize the primary reason for care gaps in a single sentence.",
+		"OverallMeasurePerformance": "Assess the performance of the measure.",
+		"CareGapsObserved": "Identify  observed Care gaps",
+		"PIA": "Suggest improvements to address the gaps."
+	  }}
+	}}
+	\`\`\`
+	
+	Ensure the response is **valid JSON** and contains no additional text.`;
+	
 	const promptTemplate = ChatPromptTemplate.fromMessages([
-		["system", systemTemplate],
-		["user", `Summarize the following measure calculation and care gaps data into a concise, understandable report for a physician or clinical administrator.
-Data: {measureData}`],
+	  ["system", systemTemplate],
+	  [
+		"user",
+		`Summarize the following measure calculation and care gaps data into a structured JSON report for a physician or clinical administrator.
+	
+	Data: {measureData}
+	
+	;inj`
+	  ],
 	]);
 
 
