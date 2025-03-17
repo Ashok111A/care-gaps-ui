@@ -160,10 +160,17 @@ const IndividualResults = () => {
               </li>
             ))}
           </ul>
-          <div className="flex items-center p-4 bg-red-100 text-red-700 rounded-lg border border-red-400 cursor-pointer" onClick={() => setExpanded(!expanded)}>
-            <svg className="h-5 w-5 mr-2 text-red-700" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M8.257 3.099c.366-.773 1.42-.773 1.786 0l7.071 14.142c.37.738-.157 1.631-.893 1.631H2.786c-.736 0-1.262-.893-.893-1.631l7.07-14.142zM11 14a1 1 0 11-2 0 1 1 0 012 0zm-1-3a1 1 0 00-1 1v2a1 1 0 002 0v-2a1 1 0 00-1-1z" clipRule="evenodd"></path></svg>
-            <span>Significant care gaps observed. Click to expand.</span>
+
+          <div
+            className="flex items-center p-4 bg-red-100 text-red-700 rounded-lg border border-red-400 cursor-pointer 
+             transition-all duration-300 hover:bg-red-200 hover:shadow-md active:scale-95"
+            onClick={() => setExpanded(!expanded)}>
+            <svg className="h-5 w-5 mr-2 text-red-700 animate-pulse" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path fillRule="evenodd" d="M8.257 3.099c.366-.773 1.42-.773 1.786 0l7.071 14.142c.37.738-.157 1.631-.893 1.631H2.786c-.736 0-1.262-.893-.893-1.631l7.07-14.142zM11 14a1 1 0 11-2 0 1 1 0 012 0zm-1-3a1 1 0 00-1 1v2a1 1 0 002 0v-2a1 1 0 00-1-1z" clipRule="evenodd"></path>
+            </svg>
+            <span className="font-semibold">Significant care gaps observed. <span className="underline">Click to expand.</span></span>
           </div>
+
 
           {expanded && (
             <div className="mt-4 p-4 bg-gray-100 rounded-lg">
@@ -174,9 +181,17 @@ const IndividualResults = () => {
             </div>
           )}
 
-          <div className="flex items-center p-4 bg-blue-100 text-blue-700 rounded-lg border border-blue-400 cursor-pointer mt-4" onClick={() => setExpandedImprovement(!expandedImprovement)}>
-            <span>Potential Areas for Improvement. Click to expand.</span>
+          <div
+            className="flex items-center p-4 bg-blue-100 text-blue-700 rounded-lg border border-blue-400 cursor-pointer 
+             transition-all duration-300 hover:bg-blue-200 hover:shadow-md active:scale-95 mt-4"
+            onClick={() => setExpandedImprovement(!expandedImprovement)}
+          >
+            <svg className="h-5 w-5 mr-2 text-blue-700 animate-pulse" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path fillRule="evenodd" d="M18 10c0 4.418-3.582 8-8 8s-8-3.582-8-8 3.582-8 8-8 8 3.582 8 8zm-8 4a1 1 0 100-2 1 1 0 000 2zm-1-3a1 1 0 012 0v-3a1 1 0 10-2 0v3z" clipRule="evenodd"></path>
+            </svg>
+            <span className="font-semibold">Potential Areas for Improvement. <span className="underline">Click to expand.</span></span>
           </div>
+
 
           {expandedImprovement && (
             <div className="mt-4 p-4 bg-gray-100 rounded-lg">
@@ -220,6 +235,15 @@ const IndividualResults = () => {
                     key={i}
                     className="bg-white text-gray-900 p-6 rounded-lg shadow-md border border-gray-300 transition-all duration-300"
                   >
+                    <p className="text-sm mt-2">
+                      <strong>Library:</strong> {item.libraryName}
+                    </p>
+                    <p className="text-sm mt-2">
+                      <strong>Statement:</strong> {item.statementName}
+                    </p>
+                    <p className="text-sm mt-2">
+                      <strong>Result:</strong> {item.pretty}
+                    </p>
                     <p className="text-sm mt-2">Library: {item.libraryName}</p>
                     <p className="text-sm mt-2">Statement: {item.statementName}</p>
                     <p className="text-sm mt-2">Result: {item.pretty
@@ -230,6 +254,7 @@ const IndividualResults = () => {
               </div>
             </div>
           </div>
+
         </div>
       </div>
 
