@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom';
-import { AlertTriangle, CheckCircle2, User, Calendar, Users,ClipboardPlus } from 'lucide-react';
+import { AlertTriangle, CheckCircle2, User, Calendar, Users, ClipboardPlus } from 'lucide-react';
 const IndividualResults = () => {
   const [expanded, setExpanded] = useState(false);
   const [expandedImprovement, setExpandedImprovement] = useState(false);
@@ -10,22 +10,22 @@ const IndividualResults = () => {
   const [isIssueDetected, setIssueDetected] = useState("");
   const [isCareGapDetected, setIsCareGapDetected] = useState(false);
   const individualResultsReport = useLocation().state;
-  const aisummary=useLocation().state.SummaryInsights;
+  const aisummary = useLocation().state.SummaryInsights;
 
-  const patient =individualResultsReport.individualCalculationResult.patientData
-  
-  const detectedIssues = Object.keys( individualResultsReport.gapsResult.results).length>0
-  ? individualResultsReport.gapsResult.results.entry
+  const patient = individualResultsReport.individualCalculationResult.patientData
+
+  const detectedIssues = Object.keys(individualResultsReport.gapsResult.results).length > 0
+    ? individualResultsReport.gapsResult.results.entry
       .filter(e => e?.resource?.resourceType === "DetectedIssue")
       .map(e => e.resource)
-  : [];
+    : [];
   const toggleExpand = () => {
     setStatementResultsExpanded(!isStatementResultsExpanded);
   };
 
 
-  function isCareGapsObserved(){
-    
+  function isCareGapsObserved() {
+
   }
   return (
     <div className="flex flex-col " style={{ height: "auto", minHeight: "100%" }} >
@@ -35,111 +35,108 @@ const IndividualResults = () => {
         <div className="d-flex flex-col">
 
           <div >
-    
 
-<div className="bg-white rounded-xl shadow-lg overflow-hidden">
-          <div className="bg-gradient-to-br from-blue-50 via-white to-blue-50 px-6 py-4">
-            <h2 className="text-2xl font-bold text-white flex items-center gap-2">
-              <User className="h-6 w-6 text-black" />
-            <p className='text-black' style={{fontSize:'20px'}}>  Patient Information</p>
-            </h2>
-          </div>
 
-          <div className="p-6">
-            {patient ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="flex items-start gap-3 bg-blue-50 p-4 rounded-lg">
-                  <Users className="h-5 w-5 text-black mt-1 flex-shrink-0" />
-                  <div>
-                    <div className="text-sm text-black font-medium">Full Name</div>
-                    <div className="text-gray-900">
-                      {patient.fullName
-                      }
+            <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+              <div className="bg-gradient-to-br from-blue-50 via-white to-blue-50 px-6 py-4">
+                <h2 className="text-2xl font-bold text-white flex items-center gap-2">
+                  <User className="h-6 w-6 text-black" />
+                  <p className='text-black' style={{ fontSize: '20px' }}>  Patient Information</p>
+                </h2>
+              </div>
+
+              <div className="p-6">
+                {patient ? (
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="flex items-start gap-3 bg-blue-50 p-4 rounded-lg">
+                      <Users className="h-5 w-5 text-black mt-1 flex-shrink-0" />
+                      <div>
+                        <div className="text-sm text-black font-medium">Full Name</div>
+                        <div className="text-gray-900">
+                          {patient.fullName
+                          }
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-3 bg-blue-50 p-4 rounded-lg">
+                      <Calendar className="h-5 w-5 text-black mt-1 flex-shrink-0" />
+                      <div>
+                        <div className="text-sm text-black font-medium">Birth Date</div>
+                        <div className="text-gray-900">{patient.birthDate}</div>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-3 bg-blue-50 p-4 rounded-lg">
+                      <User className="h-5 w-5 text-black mt-1 flex-shrink-0" />
+                      <div>
+                        <div className="text-sm text-black font-medium">Gender</div>
+                        <div className="text-gray-900 capitalize">{patient.gender}</div>
+                      </div>
                     </div>
                   </div>
-                </div>
-
-                <div className="flex items-start gap-3 bg-blue-50 p-4 rounded-lg">
-                  <Calendar className="h-5 w-5 text-black mt-1 flex-shrink-0" />
-                  <div>
-                    <div className="text-sm text-black font-medium">Birth Date</div>
-                    <div className="text-gray-900">{patient.birthDate}</div>
+                ) : (
+                  <div className="flex items-center justify-center h-32 bg-gray-50 rounded-lg">
+                    <p className="text-gray-500">No patient data available</p>
                   </div>
-                </div>
+                )}
+              </div>
+            </div>
+          </div>
 
-                <div className="flex items-start gap-3 bg-blue-50 p-4 rounded-lg">
-                  <User className="h-5 w-5 text-black mt-1 flex-shrink-0" />
-                  <div>
-                    <div className="text-sm text-black font-medium">Gender</div>
-                    <div className="text-gray-900 capitalize">{patient.gender}</div>
+
+          <div className="bg-white rounded-xl shadow-lg overflow-hidden mt-3" >
+            {/* Header */}
+            <div className="bg-gradient-to-br from-blue-50 via-white to-blue-50 px-6 py-4">
+              <h2 className="text-2xl font-bold text-white flex items-center gap-2">
+                {/* <AlertTriangle className="h-6 w-6 text-red-500" /> */}
+                <p className="text-black" style={{ fontSize: '20px' }}>Gaps in Care Assessment</p>
+
+              </h2>
+            </div>
+
+            {/* Content */}
+            <div className="p-6">
+              {/* Issues List */}
+              <div className="mb-6">
+                {/* <h3 className="text-lg font-semibold text-gray-800 mb-3">Detected Issues</h3> */}
+                {detectedIssues.length > 0 ? (
+                  <ul className="space-y-2">
+                    {detectedIssues.map((issue, index) => (
+                      <li
+                        key={index}
+                        className="flex items-start gap-3 bg-red-50 text-red-700 p-3 rounded-lg"
+                      >
+                        <AlertTriangle className="h-5 w-5 mt-0.5 flex-shrink-0" />
+                        <span>{issue.code?.coding?.[0]?.display || "Unknown Issue"}</span>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <div className="flex items-center gap-2 text-green-600 bg-green-50 p-4 rounded-lg">
+                    <CheckCircle2 className="h-5 w-5" />
+                    <p className="font-medium">No detected issues</p>
                   </div>
-                </div>
+                )}
               </div>
-            ) : (
-              <div className="flex items-center justify-center h-32 bg-gray-50 rounded-lg">
-                <p className="text-gray-500">No patient data available</p>
+
+              {/* AI Summary */}
+              <div className="bg-blue-50 rounded-lg p-4">
+                <h3 className="text-lg font-semibold text-gray-800 mb-2">Detected Issue</h3>
+                <p className="text-gray-700 leading-relaxed">
+                  {aisummary.DetectedIssue}
+                </p>
               </div>
-            )}
-          </div>
-        </div>
-            </div>
-
-          
-
-         
-  
-        <div className="bg-white rounded-xl shadow-lg overflow-hidden mt-3" >
-          {/* Header */}
-          <div className="bg-gradient-to-br from-blue-50 via-white to-blue-50 px-6 py-4">
-            <h2 className="text-2xl font-bold text-white flex items-center gap-2">
-            {/* <AlertTriangle className="h-6 w-6 text-red-500" /> */}
-<p className="text-black" style={{fontSize:'20px'}}>Gaps in Care Assessment</p>
-
-            </h2>
-          </div>
-
-          {/* Content */}
-          <div className="p-6">
-            {/* Issues List */}
-            <div className="mb-6">
-              {/* <h3 className="text-lg font-semibold text-gray-800 mb-3">Detected Issues</h3> */}
-              {detectedIssues.length > 0 ? (
-                <ul className="space-y-2">
-                  {detectedIssues.map((issue, index) => (
-                    <li 
-                      key={index}
-                      className="flex items-start gap-3 bg-red-50 text-red-700 p-3 rounded-lg"
-                    >
-                      <AlertTriangle className="h-5 w-5 mt-0.5 flex-shrink-0" />
-                      <span>{issue.code?.coding?.[0]?.display || "Unknown Issue"}</span>
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <div className="flex items-center gap-2 text-green-600 bg-green-50 p-4 rounded-lg">
-                  <CheckCircle2 className="h-5 w-5" />
-                  <p className="font-medium">No detected issues</p>
-                </div>
-              )}
-            </div>
-
-            {/* AI Summary */}
-            <div className="bg-blue-50 rounded-lg p-4">
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Detected Issue</h3>
-              <p className="text-gray-700 leading-relaxed">
-                {aisummary.DetectedIssue}
-              </p>
             </div>
           </div>
-        </div>
-    
 
-          
+
+
         </div>
 
 
         <div className="w-full md:w-2/3 bg-white shadow-lg rounded-2xl border border-gray-200 p-6">
-        
+
           <h2 className="text-xl font-semibold mb-4">Clinical Quality Report</h2>
           <ul className="divide-y divide-gray-300">
             {individualResultsReport.individualCalculationResult.populationResults.map((item) => (
@@ -244,11 +241,6 @@ const IndividualResults = () => {
                     <p className="text-sm mt-2">
                       <strong>Result:</strong> {item.pretty}
                     </p>
-                    <p className="text-sm mt-2">Library: {item.libraryName}</p>
-                    <p className="text-sm mt-2">Statement: {item.statementName}</p>
-                    <p className="text-sm mt-2">Result: {item.pretty
-
-                    }</p>
                   </div>
                 ))}
               </div>
